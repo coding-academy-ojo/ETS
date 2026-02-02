@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--font awosome icon start-->
+
+  <script src="https://kit.fontawesome.com/62ca34cbb0.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!---font awosome icon  end-->
+
+  <link rel="shortcut icon" href="./orange-logo.svg" type="image/x-icon" />
+
+  <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/orange-helvetica.min.css" rel="stylesheet"
+
+    integrity="sha384-A0Qk1uKfS1i83/YuU13i2nx5pk79PkIfNFOVzTcjCMPGKIDj9Lqx9lJmV7cdBVQZ" crossorigin="anonymous" />
+
+  <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/boosted.min.css" rel="stylesheet"
+
+    integrity="sha384-fyenpx19UpfUhZ+SD9o9IdxeIJKE6upKx0B54OcXy1TqnO660Qw9xw6rOASP+eir" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="./style.css" />
+
+  <title>Survey Question</title>
+
+  <style>
+
+    nav {
+
+      position: sticky;
+
+    }
+
+    #radioOtherOption {
+
+      border: none;
+
+      border-bottom: 1px solid #000;
+
+      padding: 5px 10px;
+
+      outline: none;
+
+    }
+
+    .validation_text {
+
+      color: red;
+
+      display: none;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- sticky navbar -->
+
+  <header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+      <div class="container-fluid">
+
+        <div class="navbar-brand">
+
+          <a class="stretched-link" href="#">
+
+            <img src="https://boosted.orange.com/docs/5.3/assets/brand/orange-logo.svg" width="50" height="50" alt=""
+
+              id="Logo" loading="lazy" />
+
+          </a>
+
+        </div>
+
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+
+          data-bs-target="#navbarToggleExternalContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+
+          aria-label="Toggle navigation">
+
+          <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse align-items-end" id="navbarSupportedContent">
+
+          <ul class="navbar-nav me-auto">
+
+            <li class="nav-item">
+
+              <a class="nav-link" aria-current="page" href="index.html">
+
+                Student Profile</a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link" href="#">Employment Status</a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link active" href="Survey_Tool.html">Survey Tool</a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link" href="ContactInfo.html">Contacts</a>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <!-- the main body contain 2section -->
+
+  <main>
+
+    <div class="container">
+
+      <br class="row work_space">
+
+      <div class="col-8 align-items-center justify-content-center">
+
+        <!-- form section -->
+
+        <div class="form_section">
+
+          </br>
+
+          <h3 class="form_container">Please to answer the following questions:</h3>
+
+          <hr class="background_hr" />
+
+          <form id="contact_form" autocomplete="off">
+
+            <fieldset>
+
+              <!-- Student Full Name -->
+
+              <div class="mb-3">
+
+                <label for="studentFullName" class="form-label is-required">
+
+                  Full Name (First Middle Last)<span class="visually-hidden">
+
+                    (required)</span></label>
+
+                <input type="text" id="studentFullName" class="form-control" required />
+
+                <p class="validation_text message_phone1" id="">
+
+                  Please enter your full name
+
+                </p>
+
+              </div>
+
+              <!--Student Employment Status -->
+
+              <div class="mb-3">
+
+                <label for="studentEmploymentStatus" class="form-label is-required">What is your employment Status?<span
+
+                    class="visually-hidden">
+
+                    (required)</span></label>
+
+                <div class="form-check">
+
+                  <input class="form-check-input" type="radio" name="empStatus" id="availableEmpStatus" required>
+
+                  <label class="form-check-label" for="availableEmpStatus">
+
+                    Available for opportunities
+
+                  </label>
+
+                </div>
+
+                <div class="form-check">
+
+                  <input class="form-check-input" type="radio" name="empStatus" id="employedFullTime">
+
+                  <label class="form-check-label" for="employedFullTime">
+
+                    Employed - Full time Job
+
+                  </label>
+
+                </div>
+
+                <div class="form-check">
+
+                  <input class="form-check-input" type="radio" name="empStatus" id="employedPartTime">
+
+                  <label class="form-check-label" for="employedPartTime">
+
+                    Employed - Part time job
+
+                  </label>
+
+                </div>
+
+                <div class="form-check">
+
+                  <input class="form-check-input" type="radio" name="empStatus" id="paidInternTrainee">
+
+                  <label class="form-check-label" for="paidInternTrainee">
+
+                    Paid Internship / Trainee
+
+                  </label>
+
+                </div>
+
+                <div class="form-check">
+
+                  <input class="form-check-input" type="radio" name="empStatus" id="Freelancer">
+
+                  <label class="form-check-label" for="Freelancer">
+
+                    Freelancing Job
+
+                  </label>
+
+                </div>
+
+                <div class="form-check">
+
+                  <input class="form-check-input" type="radio" name="empStatus" id="other">
+
+                  <label class="form-check-label" for="other">Other
+
+                    <input type="text" name="other_reason" id="radioOtherOption" />
+
+                  </label>
+
+                </div>
+
+                <p class="validation_text">
+
+                  Please select your employment status
+
+                </p>
+
+              </div>
+
+              <!--input for Company Name-->
+
+              <div class="mb-3">
+
+                <label for="requiredTextInput3" class="form-label is-required">Company Name (Employer)</label>
+
+                <input type="text" id="requiredTextInput3" class="form-control" required />
+
+                <p class="validation_text">
+
+                  Please enter your employer name
+
+                </p>
+
+              </div>
+
+              <!-- input for positin   -->
+
+              <div class="mb-3">
+
+                <label for="requiredTextInput4" class="form-label is-required">
+
+                  What is your position (Role)<span class="visually-hidden">
+
+                    (required)</span></label>
+
+                <input type="text" id="requiredTextInput4" class="form-control" required />
+
+                <p class="validation_text">
+
+                  Please enter your question
+
+                </p>
+
+              </div>
+
+              <!-- input for linkedIn link -->
+
+              <div class="mb-3">
+
+                <label for="requiredTextInput5" class="form-label is-required">
+
+                  Pick your work joining date<span class="visually-hidden">
+
+                    (required)</span></label>
+
+                <input type="date" id="requiredTextInput5" class="form-control" required />
+
+                <p class="validation_text">
+
+                  Please enter your question
+
+                </p>
+
+              </div>
+
+              <div class="mb-3 mt-2">
+
+                <input type="submit" value="Submit" class="btn btn-primary">
+
+                <button type="reset" id="button_edit_page" class="btn btn-secondary float-end mb-3">
+
+                  Cancel
+
+                </button>
+
+              </div>
+
+            </fieldset>
+
+          </form>
+
+        </div>
+
+      </div>
+
+      <!-- image section -->
+
+      <div class="container_photo text-center col">
+
+        <div class="inner_photo_con">
+
+          <img src="./image/download_img/internship-job-training.jpg" class="personal_img" alt="" />
+
+        </div>
+
+      </div>
+
+    </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer start-->
+
+  <footer class="footer bg-dark navbar-dark pt-5">
+
+    <!-- <div class="container-xxl footer-title-content">
+
+      <div class="d-flex justify-content-center footer_form_sectoin">
+
+        <h3 class="pe-5">Sign up to our mailing list</h3>
+
+        <form class="d-flex col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5 gap-2 gap-md-3">
+
+          <label for="inputEmail" class="visually-hidden">Email</label>
+
+          <input type="email" class="form-control text-bg-dark border-dark" id="inputEmail"
+
+            placeholder="Enter your email" />
+
+          <button type="submit" class="btn btn-primary btn-inverse text-nowrap">
+
+            Sign up
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </div> -->
+
+    <hr />
+
+    <div class="container-xxl footer-nav">
+
+      <nav class="accordion accordion-dark" id="accordion2" aria-label="Sitemap footer 2">
+
+        <div class="row">
+
+          <div class="footer-column col-md-4">
+
+            <h3 class="accordion-header footer-heading" id="headingTwo2">
+
+              <button class="accordion-button collapsed container-xxl px-1 d-md-none" type="button"
+
+                data-bs-toggle="collapse" data-bs-target="#collapseTwo2" aria-expanded="true"
+
+                aria-controls="collapseTwo2">
+
+                Orange Jordan
+
+              </button>
+
+              <span class="d-none d-md-flex">Orange Jordan</span>
+
+            </h3>
+
+            <div id="collapseTwo2" class="container-xxl accordion-collapse collapse" aria-labelledby="headingTwo2"
+
+              data-bs-parent="#accordion2">
+
+              <ul class="navbar-nav">
+
+                <li>
+
+                  <a class="nav-link" href="#" aria-describedby="headingTwo2">About Orange</a>
+
+                </li>
+
+                <li>
+
+                  <a class="nav-link" href="#" aria-describedby="headingTwo2">Annual reports</a>
+
+                </li>
+
+                <li>
+
+                  <a class="nav-link" href="#" aria-describedby="headingTwo2">Sustainability reports</a>
+
+                </li>
+
+                <li>
+
+                  <a class="nav-link" href="#" aria-describedby="headingTwo2">Compliance & Fraud</a>
+
+                </li>
+
+                <li>
+
+                  <a class="nav-link" href="#" aria-describedby="headingTwo2">Distributor's corner</a>
+
+                </li>
+
+                <li>
+
+                  <a class="nav-link" href="#" aria-describedby="headingTwo2">Legal</a>
+
+                </li>
+
+                <li>
+
+                  <a class="nav-link" href="#" aria-describedby="headingTwo2">Privacy Policy</a>
+
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+          <div class="footer-column col-md-4">
+
+            <h3 class="accordion-header footer-heading" id="headingThree2">
+
+              <button class="accordion-button collapsed container-xxl px-1 d-md-none" type="button"
+
+                data-bs-toggle="collapse" data-bs-target="#collapseThree2" aria-expanded="true"
+
+                aria-controls="collapseThree2">
+
+                Business
+
+              </button>
+
+              <span class="d-none d-md-flex">Business</span>
+
+            </h3>
+
+            <div id="collapseThree2" class="container-xxl accordion-collapse collapse" aria-labelledby="headingThree2"
+
+              data-bs-parent="#accordion2">
+
+              <ul class="navbar-nav">
+
+                <li>
+
+                  <a class="nav-link" href="/codingacademy" aria-describedby="headingThree2">Coding Academy</a>
+
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+          <div class="footer-column col-md-4">
+
+            <h3 class="accordion-header footer-heading" id="headingFour2">
+
+              <button class="accordion-button collapsed container-xxl px-1 d-md-none" type="button"
+
+                data-bs-toggle="collapse" data-bs-target="#collapseFour2" aria-expanded="true"
+
+                aria-controls="collapseFour2">
+
+                Corporate
+
+              </button>
+
+              <span class="d-none d-md-flex">Corporate</span>
+
+            </h3>
+
+            <div id="collapseFour2" class="container-xxl accordion-collapse collapse" aria-labelledby="headingFour2"
+
+              data-bs-parent="#accordion2">
+
+              <ul class="navbar-nav">
+
+                <li>
+
+                  <a class="nav-link" href="#" aria-describedby="headingFour2">About us</a>
+
+                </li>
+
+                <li>
+
+                  <a class="nav-link" href="/help" aria-describedby="headingFour2">Help</a>
+
+                </li>
+
+                <li>
+
+                  <a class="nav-link" href="/terms" aria-describedby="headingFour2">Terms & Conditions</a>
+
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+    <hr />
+
+    <div class="container-xxl footer-terms">
+
+      <div class="d-flex justify-content-around">
+
+        <ul class="navbar-nav gap-2 flex-row align-self-start">
+
+          <li class="footer-heading me-md-3">Follow Us</li>
+
+          <li>
+
+            <a href="#" class="btn btn-icon btn-social btn-twitter btn-inverse"><span
+
+                class="visually-hidden">Twitter</span></a>
+
+          </li>
+
+          <li>
+
+            <a href="#" class="btn btn-icon btn-social btn-facebook btn-inverse"><span
+
+                class="visually-hidden">Facebook</span></a>
+
+          </li>
+
+          <li>
+
+            <a href="#" class="btn btn-icon btn-social btn-instagram btn-inverse"><span
+
+                class="visually-hidden">Instagram</span></a>
+
+          </li>
+
+          <li>
+
+            <a href="#" class="btn btn-icon btn-social btn-youtube btn-inverse"><span
+
+                class="visually-hidden">YouTube</span></a>
+
+          </li>
+
+        </ul>
+
+        <ul class="navbar-nav gap-md-3">
+
+          <li class="fw-bold">© Orange 2023</li>
+
+          <li><a class="nav-link" href="#">Terms and conditions</a></li>
+
+          <li><a class="nav-link" href="#">Privacy</a></li>
+
+          <li><a class="nav-link" href="#">Accessibility statement</a></li>
+
+          <li><a class="nav-link" href="#">Cookie policy</a></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- Footer end-->
+
+  <!-- popup message -->
+
+  <!-- <div class="bg-model">
+
+    <div class="model-contact">
+
+      <div class="close-button">+</div>
+
+      <img src="./image/404-tick.png" alt="tick_img" />
+
+      <div class="msg-content">
+
+        The Data update successfully
+
+      </div>
+
+    </div>
+
+  </div> -->
+
+  <!-- <script src="./main.js"></script> -->
+
+  <!-- <script src="./main2.js"></script> -->
+
+  <script>
+
+    // control logo size when scroll down
+
+    window.onscroll = function () {
+
+      growShrinkLogo();
+
+    };
+
+    function growShrinkLogo() {
+
+      var Logo = document.getElementById("Logo");
+
+      if (
+
+        document.body.scrollTop > 5 ||
+
+        document.documentElement.scrollTop > 5
+
+      ) {
+
+        Logo.style.width = "0.95em";
+
+      } else {
+
+        Logo.style.width = "60px";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+ 	    Amman Academy
+            Aqaba Academy
+            Irbid Academy
+            Zarqa Academy
+            Balqa Academy

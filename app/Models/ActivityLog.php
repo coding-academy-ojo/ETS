@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Trainee;
+use App\Models\Company;
+
+class ActivityLog extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'action',
+        'model',
+        'model_id',
+        'changes',
+        'read',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // ✅ ADD THIS METHOD
+    public function trainee()
+    {
+        return $this->belongsTo(Trainee::class, 'model_id');
+    }
+}
