@@ -5,13 +5,11 @@ namespace App\Observers;
 use App\Models\EmploymentLog;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ActivityLog;
+
 class EmploymentLogObserver
 {
     /**
      * Handle the EmploymentLog "created" event.
-     *
-     * @param  \App\Models\EmploymentLog  $employmentLog
-     * @return void
      */
     public function created(EmploymentLog $log)
     {
@@ -20,81 +18,96 @@ class EmploymentLogObserver
             'action'   => 'created',
             'model'    => 'EmploymentLog',
             'model_id' => $log->id,
-            'changes'  => json_encode(
-                [
-                    'status' => $log->status,
-                    'company' => optional($log->company)->name ?? 'N/A',
-                    'position' => $log->position ?? 'N/A',
-                    'start_date' => $log->start_date,
-                    'end_date' => $log->end_date,
-                    'source_of_information' => $log->source_of_information,
-
-                    // ✅ HUMAN READABLE
-                    'academy_name' => optional($log->academy)->name,
-                    'cohort_name'  => optional($log->cohort)->name,
-                    'trainee_name' => optional($log->trainee)->first_name,
-
-                    'created_by' => optional(Auth::user())->name,
-                    'created_at' => now()->toDateTimeString(),
-                ]
-            ),
+            // Use the private helper function here so the names are joined correctly
+            'changes'  => json_encode($this->formatEmploymentLog($log)),
         ]);
     }
 
     /**
      * Handle the EmploymentLog "updated" event.
-     *
-     * @param  \App\Models\EmploymentLog  $employmentLog
-     * @return void
      */
-    public function updated(EmploymentLog $log)
-    {
-        ActivityLog::create([
-            'user_id'  => Auth::id(),
-            'action'   => 'updated',
-            'model'    => 'EmploymentLog',
-            'model_id' => $log->id,
-            'changes'  => json_encode($log->getChanges()),
-        ]);
+   public function updated(EmploymentLog $log)
+{
+    $changes = $log->getChanges();
+
+    // Remove auto-updated fields
+    unset($changes['updated_at']);
+
+    if (empty($changes)) {
+        return;
     }
+
+    // Add trainee name manually
+    $trainee = $log->trainee;
+
+    $changes['trainee_name'] = $trainee
+        ? trim($trainee->first_name . ' ' . $trainee->last_name)
+        : 'N/A';
+
+    ActivityLog::create([
+        'user_id'  => Auth::id(),
+        'action'   => 'updated',
+        'model'    => 'EmploymentLog',
+        'model_id' => $log->id,
+        'changes'  => json_encode($changes),
+    ]);
+}
+
 
     /**
      * Handle the EmploymentLog "deleted" event.
-     *
-     * @param  \App\Models\EmploymentLog  $employmentLog
-     * @return void
      */
-    public function deleted(EmploymentLog $log)
-    {
-        ActivityLog::create([
-            'user_id' => Auth::id(),
-            'action' => 'updated',
-            'model' => 'EmploymentLog',
-            'model_id' => $log->id,
-            'changes' => json_encode($log->getChanges()),
-            'previous_changes' => json_encode($log->getOriginal())
-        ]);
-    }
+ public function deleted(EmploymentLog $log)
+{
+    $trainee = $log->trainee;
+
+    $data = [
+        'trainee_name' => $trainee
+            ? trim($trainee->first_name . ' ' . $trainee->last_name)
+            : 'N/A',
+
+        'status' => $log->status,
+        'company' => optional($log->company)->name,
+        'position' => $log->position,
+        'start_date' => $log->start_date,
+        'end_date' => $log->end_date,
+        'source_of_information' => $log->source_of_information,
+        'deleted_at' => now()->toDateTimeString(),
+    ];
+
+    ActivityLog::create([
+        'user_id'  => Auth::id(),
+        'action'   => 'deleted',
+        'model'    => 'EmploymentLog',
+        'model_id' => $log->id,
+        'changes'  => json_encode($data),
+    ]);
+}
+
 
     /**
-     * Handle the EmploymentLog "restored" event.
-     *
-     * @param  \App\Models\EmploymentLog  $employmentLog
-     * @return void
+     * Helper to format the JSON data consistently
      */
-    public function restored(EmploymentLog $employmentLog)
+    private function formatEmploymentLog($log)
     {
-        //
-    }
-
-    /**
-     * Handle the EmploymentLog "force deleted" event.
-     *
-     * @param  \App\Models\EmploymentLog  $employmentLog
-     * @return void
-     */
-    public function forceDeleted(EmploymentLog $employmentLog)
-    {
-        //
+        $trainee = $log->trainee;
+        
+        return [
+            // This combines BOTH names now
+            'trainee_name' => $trainee 
+                ? trim($trainee->first_name . ' ' . $trainee->last_name) 
+                : 'N/A',
+                
+            'academy_name' => optional($log->academy)->name,
+            'cohort_name'  => optional($log->cohort)->name,
+            'status'       => $log->status,
+            'company'      => optional($log->company)->name,
+            'position'     => $log->position,
+            'start_date'   => $log->start_date,
+            'end_date'     => $log->end_date,
+            'source_of_information' => $log->source_of_information ?? 'N/A',
+            'created_by'   => optional(Auth::user())->name,
+            'created_at'   => now()->toDateTimeString(),
+        ];
     }
 }

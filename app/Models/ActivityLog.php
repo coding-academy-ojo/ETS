@@ -29,4 +29,9 @@ class ActivityLog extends Model
     {
         return $this->belongsTo(Trainee::class, 'model_id');
     }
+    public function employmentLog()
+{
+    return $this->belongsTo(EmploymentLog::class, 'model_id');
 }
+}
+

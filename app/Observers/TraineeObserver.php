@@ -24,19 +24,29 @@ class TraineeObserver
      * @param  \App\Models\Trainee  $trainee
      * @return void
      */
-    public function updated(Trainee $trainee)
-    {
-        ActivityLog::create([
-            'user_id'  => Auth::id(),
-            'action'   => 'updated',
-            'model'    => 'Trainee',
-            'model_id' => $trainee->id,
-            'changes'  => json_encode([
-                'trainee_name' => $trainee->name,
-                'updated_at'   => now()->toDateTimeString(),
-            ]),
-        ]);
+  public function updated(Trainee $trainee)
+{
+    $changes = $trainee->getChanges();
+
+    // Remove auto fields
+    unset($changes['updated_at']);
+
+    if (empty($changes)) {
+        return;
     }
+
+    ActivityLog::create([
+        'user_id'  => auth()->id(),
+        'action'   => 'updated',
+        'model'    => 'Trainee',
+        'model_id' => $trainee->id,
+        'changes'  => json_encode([
+            'trainee_name' => trim($trainee->first_name . ' ' . $trainee->last_name),
+            'fields' => $changes
+        ]),
+    ]);
+}
+
 
     /**
      * Handle the Trainee "deleted" event.

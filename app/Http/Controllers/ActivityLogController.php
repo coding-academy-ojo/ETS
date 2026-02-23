@@ -15,13 +15,13 @@ class ActivityLogController extends Controller
      */
     public function index()
     {
-//        dd("test");
+    //    dd("test");
         $logs = ActivityLog::with(['user', 'trainee'])
             ->latest()
-            ->paginate(20);
-//        dd($logs);
+            ->get();
+    //    dd($logs);
         return view('user_role.notification_page', compact('logs'));
-        return view('user_role.notification_page', compact('logs'));
+        // return view('user_role.notification_page', compact('logs'));
 
     }
 
