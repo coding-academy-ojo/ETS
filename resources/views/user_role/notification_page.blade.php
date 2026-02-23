@@ -42,7 +42,7 @@
             </h4>
             <button id="markAllBtn" class="btn btn-sm btn-outline-success px-3">✔ Mark all as seen</button>
         </div>
-
+<!-- upgrade to version 10 -->
         @if($logs->count())
             <div class="card border-0 shadow-sm mb-3">
                 <div class="card-body p-3">
