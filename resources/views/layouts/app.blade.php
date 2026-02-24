@@ -118,7 +118,8 @@
                                     <i class="bi bi-bell-fill fs-5 text-warning"></i>
                                     <span id="navbarUnreadBadge"
                                           class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                                          style="{{ $unreadActivityCount == 0 ? 'display:none' : '' }}">
+                                          style="{{ $unreadActivityCount == 0 ? 'display:none' : '' }}"> 
+                                          
                       {{ $unreadActivityCount }}
                 </span>
                                 </a>

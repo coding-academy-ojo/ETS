@@ -15,11 +15,11 @@ class ActivityLogController extends Controller
      */
     public function index()
     {
-    //    dd("test");
+        //    dd("test");
         $logs = ActivityLog::with(['user', 'trainee'])
             ->latest()
             ->get();
-    //    dd($logs);
+        //    dd($logs);
         return view('user_role.notification_page', compact('logs'));
         // return view('user_role.notification_page', compact('logs'));
 
@@ -27,7 +27,7 @@ class ActivityLogController extends Controller
 
     public function markAsRead(ActivityLog $log)
     {
-//        dd('hello');
+        // Toggle the read status
         $log->update(['read' => !$log->read]);
 
         return response()->json([
@@ -36,14 +36,20 @@ class ActivityLogController extends Controller
             'unreadCount' => ActivityLog::where('read', 0)->count()
         ]);
     }
+
     public function markAllRead()
     {
-        ActivityLog::where('read', 0)->update(['read' => 1]);
+        // Mark all as read and get count
+        $updatedCount = ActivityLog::where('read', 0)->update(['read' => 1]);
 
         return response()->json([
-            'success' => true
+            'success' => true,
+            'message' => 'All logs marked as read',
+            'updated_count' => $updatedCount,
+            'unreadCount' => 0
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -62,7 +68,7 @@ class ActivityLogController extends Controller
      */
     public function store(Request $request)
     {
-//        $company = Company::create($request->all());
+        //        $company = Company::create($request->all());
 //
 //        ActivityLog::create([
 //            'user_id'  => Auth::id(),
