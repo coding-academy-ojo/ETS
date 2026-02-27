@@ -513,12 +513,12 @@ class TraineeController extends Controller
     // Handle Available / Dropped
     if (in_array($status, ['available', 'dropped'])) {
         $trainee->employment_status = 'unemployed';
-        $traineeLog->company = "null";
-        $traineeLog->position = "null";
+        $traineeLog->company = 'N/A';
+        $traineeLog->position = 'N/A';
     } else {
         $trainee->employment_status = 'employed';
         $traineeLog->company = $request->input('company');
-        $traineeLog->position = $request->input('position') ?: "null";
+        $traineeLog->position = $request->input('position') ?: 'N/A';
     }
 
     $traineeLog->status = $request->status;
