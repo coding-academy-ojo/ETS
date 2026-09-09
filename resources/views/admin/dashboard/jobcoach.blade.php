@@ -12,8 +12,10 @@
     background-color: var(--bs-gray-100);
 }
 .card_title_style{
-    font-size: 17px;
-    color:#f16e00;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f16e00;
+    white-space: nowrap;
 }
 .table-custom th,
 .table-custom td {
@@ -74,21 +76,21 @@
 }
 </style>
 
-    <div class="row first_section">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3 first_section mb-4">
         <!-- Employment Rate Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card text-bg-dark mb-3 border border-white h-100">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
+        <div class="col">
+            <div class="card text-bg-dark border border-white h-100 shadow-sm">
+                <div class="card-body p-3 d-flex align-items-center justify-content-center text-center">
+                    <div class="row align-items-center justify-content-center g-2 w-100">
+                        <div class="col-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor"
                                 class="solaris-icon si-medal" viewBox="0 0 1000 1000">
                                 <path
                                     d="M667.678 357.322 925 100H625L517.678 207.322ZM500 425a200 200 0 1 1-141.421 58.579A198.7 198.7 0 0 1 500 425m0-75c-151.878 0-275 123.122-275 275s123.122 275 275 275 275-123.122 275-275-123.122-275-275-275M350 576.412 429.412 647l-26.471 105.882L500 699.941l97.059 52.941L570.588 647 650 576.412l-105.882-17.647L500 467l-44.118 91.765ZM500 325a298.8 298.8 0 0 1 129.164 29.164L375 100H75l268.819 268.819A298.6 298.6 0 0 1 500 325"
                                     style="fill-rule:evenodd" />
                             </svg>
                         </div>
-                        <div class="col-8 d-flex flex-column justify-content-center ps-3">
+                        <div class="col-auto text-center">
                             <h6 class="mb-1 card_title_style">Employment Rate</h6>
                             <p class="card-text fs-4 mb-0 fw-bold">{{$overallEmploymentRate}} %</p>
                         </div>
@@ -96,22 +98,23 @@
                 </div>
             </div>
         </div>
-        <!-- Available Trainees Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card text-bg-dark mb-3 border border-white h-100">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
-                                class="solaris-icon si-group" viewBox="0 0 1000 1000">
+
+        <!-- Total Employed Card -->
+        <div class="col">
+            <div class="card text-bg-dark border border-white h-100 shadow-sm">
+                <div class="card-body p-3 d-flex align-items-center justify-content-center text-center">
+                    <div class="row align-items-center justify-content-center g-2 w-100">
+                        <div class="col-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor"
+                                class="solaris-icon si-briefcase" viewBox="0 0 1000 1000">
                                 <path
-                                    d="M338 875V696.837A100.18 100.18 0 0 1 263 600V487.5a187.2 187.2 0 0 1 17.626-79.433 166.44 166.44 0 0 1-107.2-45.325A152.94 152.94 0 0 0 88 500v119.118C88 658.1 120.015 690 159 690v185a49.65 49.65 0 0 0 49.588 50h148.57A74.7 74.7 0 0 1 338 875m489.576-512.258a166.44 166.44 0 0 1-107.2 45.325A187.2 187.2 0 0 1 738 487.5V600a100.18 100.18 0 0 1-75 96.837V875a74.7 74.7 0 0 1-19.158 50h148.57A49.65 49.65 0 0 0 842 875V690c38.985 0 71-31.9 71-70.882V500a152.94 152.94 0 0 0-85.424-137.258M713 125a124.4 124.4 0 0 0-65.376 18.446c.9 1.913 1.769 3.84 2.6 5.794a162.38 162.38 0 0 1-24.162 166.435l7.231 3.564a187.9 187.9 0 0 1 66.676 55.086A125 125 0 1 0 713 125m-75 87.5A137.5 137.5 0 1 1 500.5 75 137.5 137.5 0 0 1 638 212.5m-15.763 129.164a177.47 177.47 0 0 1-243.474 0A162.5 162.5 0 0 0 288 487.5V600a75 75 0 0 0 75 75v200a50 50 0 0 0 50 50h175a50 50 0 0 0 50-50V675a75 75 0 0 0 75-75V487.5a162.5 162.5 0 0 0-90.763-145.836m-321.2 32.661a187.9 187.9 0 0 1 66.676-55.086l7.231-3.564A162.7 162.7 0 0 1 350.78 149.24c.827-1.954 1.7-3.881 2.6-5.794A125 125 0 1 0 288 375a126 126 0 0 0 13.035-.675Z"
+                                    d="M350 200h300v50H350v-50zm-50 50V150a50 50 0 0 1 50-50h300a50 50 0 0 1 50 50v100h150a75 75 0 0 1 75 75v500a75 75 0 0 1-75 75H150a75 75 0 0 1-75-75V325a75 75 0 0 1 75-75h150zm-150 125v425h700V375H150zm300 125h100v75H450v-75z"
                                     style="fill-rule:evenodd" />
                             </svg>
                         </div>
-                        <div class="col-8 d-flex flex-column justify-content-center ps-3">
-                            <h6 class="card_title_style mb-1 ">Total Trainees</h6>
-                            <p class="card-text fs-4 mb-0 fw-bold">{{$overall_academy_Trainee}}</p>
+                        <div class="col-auto text-center">
+                            <h6 class="mb-1 card_title_style">Total Employed</h6>
+                            <p class="card-text fs-4 mb-0 fw-bold">{{ $totalEmployed ?? \App\Models\Trainee::where('employment_status', 'employed')->count() }}</p>
                         </div>
                     </div>
                 </div>
@@ -119,19 +122,41 @@
         </div>
 
         <!-- Total Trainees Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card text-bg-dark mb-3 border border-white h-100">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
+        <div class="col">
+            <div class="card text-bg-dark border border-white h-100 shadow-sm">
+                <div class="card-body p-3 d-flex align-items-center justify-content-center text-center">
+                    <div class="row align-items-center justify-content-center g-2 w-100">
+                        <div class="col-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor"
+                                class="solaris-icon si-group" viewBox="0 0 1000 1000">
+                                <path
+                                    d="M338 875V696.837A100.18 100.18 0 0 1 263 600V487.5a187.2 187.2 0 0 1 17.626-79.433 166.44 166.44 0 0 1-107.2-45.325A152.94 152.94 0 0 0 88 500v119.118C88 658.1 120.015 690 159 690v185a49.65 49.65 0 0 0 49.588 50h148.57A74.7 74.7 0 0 1 338 875m489.576-512.258a166.44 166.44 0 0 1-107.2 45.325A187.2 187.2 0 0 1 738 487.5V600a100.18 100.18 0 0 1-75 96.837V875a74.7 74.7 0 0 1-19.158 50h148.57A49.65 49.65 0 0 0 842 875V690c38.985 0 71-31.9 71-70.882V500a152.94 152.94 0 0 0-85.424-137.258M713 125a124.4 124.4 0 0 0-65.376 18.446c.9 1.913 1.769 3.84 2.6 5.794a162.38 162.38 0 0 1-24.162 166.435l7.231 3.564a187.9 187.9 0 0 1 66.676 55.086A125 125 0 1 0 713 125m-75 87.5A137.5 137.5 0 1 1 500.5 75 137.5 137.5 0 0 1 638 212.5m-15.763 129.164a177.47 177.47 0 0 1-243.474 0A162.5 162.5 0 0 0 288 487.5V600a75 75 0 0 0 75 75v200a50 50 0 0 0 50 50h175a50 50 0 0 0 50-50V675a75 75 0 0 0 75-75V487.5a162.5 162.5 0 0 0-90.763-145.836m-321.2 32.661a187.9 187.9 0 0 1 66.676-55.086l7.231-3.564A162.7 162.7 0 0 1 350.78 149.24c.827-1.954 1.7-3.881 2.6-5.794A125 125 0 1 0 288 375a126 126 0 0 0 13.035-.675Z"
+                                    style="fill-rule:evenodd" />
+                            </svg>
+                        </div>
+                        <div class="col-auto text-center">
+                            <h6 class="card_title_style mb-1">Total Trainees</h6>
+                            <p class="card-text fs-4 mb-0 fw-bold">{{$overall_academy_Trainee}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Trainees Card -->
+        <div class="col">
+            <div class="card text-bg-dark border border-white h-100 shadow-sm">
+                <div class="card-body p-3 d-flex align-items-center justify-content-center text-center">
+                    <div class="row align-items-center justify-content-center g-2 w-100">
+                        <div class="col-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor"
                                 class="solaris-icon si-training-session" viewBox="0 0 1000 1000">
                                 <path
                                     d="M848.963 713H150.038a25 25 0 0 0-22.971 34.848L175 863h24.991v75H800v-75h24.771l47.162-115.152A25 25 0 0 0 848.963 713m-228.38-271.592L499.887 538l-120.7-96.592A162.54 162.54 0 0 0 249.975 600.5V688H475v-32a49.869 49.869 0 1 1 50 0v32h225v-88c0-78.354-55.64-143.25-129.417-158.592M650 212l-141.858 49.6-8.255 2.89-8.256-2.89L350 212v101a150 150 0 0 0 300 0zm60-48 39.8-13.5L499.887 63l-249.912 87.5L499.887 238 690 171v167l-10.177 50H721l-11-50z"
                                     style="fill-rule:evenodd" />
                             </svg>
                         </div>
-                        <div class="col-8 d-flex flex-column justify-content-center ps-3">
+                        <div class="col-auto text-center">
                             <h6 class="mb-1 card_title_style">Available Trainees</h6>
                             <p class="card-text fs-4 mb-0 fw-bold">{{$totalAvailable}}</p>
                         </div>
@@ -140,20 +165,20 @@
             </div>
         </div>
 
-        <!-- Additional Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card text-bg-dark mb-3 border border-white h-100">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
+        <!-- Total Companies Card -->
+        <div class="col">
+            <div class="card text-bg-dark border border-white h-100 shadow-sm">
+                <div class="card-body p-3 d-flex align-items-center justify-content-center text-center">
+                    <div class="row align-items-center justify-content-center g-2 w-100">
+                        <div class="col-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor"
                                 class="solaris-icon si-desk" viewBox="0 0 1000 1000">
                                 <path
                                     d="M500 150H175m700 325H450v-15c0-5.523-5.6-10-12.5-10H375v-25h-75v25h-62.5c-6.9 0-12.5 4.477-12.5 10v15H125a25.073 25.073 0 0 0-25 25v25a25 25 0 0 0 25 25h25v325h50V582.191A32.19 32.19 0 0 1 232.191 550h210.618A32.19 32.19 0 0 1 475 582.191V875h375V550h25a25 25 0 0 0 25-25v-25a25.073 25.073 0 0 0-25-25m-75 307.292A17.71 17.71 0 0 1 782.292 800H542.708A17.71 17.71 0 0 1 525 782.292v-64.584A17.71 17.71 0 0 1 542.708 700h74.957a17.7 17.7 0 0 1 12.522 5.187l14.626 14.626A17.7 17.7 0 0 0 657.335 725h10.33a17.7 17.7 0 0 0 12.522-5.187l14.626-14.626A17.7 17.7 0 0 1 707.335 700h74.957A17.71 17.71 0 0 1 800 717.708zm0-125A17.71 17.71 0 0 1 782.292 675H542.708A17.71 17.71 0 0 1 525 657.292v-64.584A17.71 17.71 0 0 1 542.708 575h74.957a17.7 17.7 0 0 1 12.522 5.187l14.626 14.626A17.7 17.7 0 0 0 657.335 600h10.33a17.7 17.7 0 0 0 12.522-5.187l14.626-14.626A17.7 17.7 0 0 1 707.335 575h74.957A17.71 17.71 0 0 1 800 592.708zM173.438 400h328.124A23.68 23.68 0 0 0 525 376.087V148.913A23.68 23.68 0 0 0 501.562 125H173.438A23.68 23.68 0 0 0 150 148.913v227.174A23.68 23.68 0 0 0 173.438 400M175 150h325v200H175z"
                                     style="fill-rule:evenodd" />
                             </svg>
                         </div>
-                        <div class="col-8 d-flex flex-column justify-content-center ps-3">
+                        <div class="col-auto text-center">
                             <h6 class="mb-1 card_title_style">Total Companies</h6>
                             <p class="card-text fs-4 mb-0 fw-bold">{{$totalCompanies}}</p>
                         </div>
@@ -161,7 +186,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div class="row ">
         <div class="card mb-4 border-0">

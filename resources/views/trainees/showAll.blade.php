@@ -75,7 +75,7 @@
         }
 
         #page_info {
-            font-size: 0.95rem; /* Matching input size */
+            font-size: 0.8rem;
             white-space: nowrap;
         }
 
@@ -232,12 +232,12 @@
 
         {{-- SEARCH + FILTERS --}}
         <div class="search-card">
-            <div class="d-flex flex-wrap align-items-center gap-3">
-                <div style="flex: 1; min-width: 150px;">
+            <div class="row g-2 align-items-end">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                     <label class="filter-label">Keyword</label>
-                    <input type="text" id="search_input" class="form-control search-input" placeholder="Name...">
+                    <input type="text" id="search_input" class="form-control search-input" placeholder="Search name...">
                 </div>
-                <div style="width: 120px;">
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                     <label class="filter-label">Status</label>
                     <select id="status_filter" class="form-control search-input">
                         <option value="">All</option>
@@ -245,7 +245,7 @@
                         <option value="unemployed">Unemployed</option>
                     </select>
                 </div>
-                <div style="width: 140px;">
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                     <label class="filter-label">Academy</label>
                     <select id="academy_filter" class="form-control search-input">
                         <option value="">All</option>
@@ -254,7 +254,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div style="width: 160px;">
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                     <label class="filter-label">Background</label>
                     <select id="edu_back_filter" class="form-control search-input">
                         <option value="">All</option>
@@ -263,9 +263,35 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="ms-auto pt-3">
-                    <div id="page_info" class="fw-bold text-dark p-2 rounded ">
-                        PAGE 0 | SHOWING 0 OF 0
+                <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6">
+                    <label class="filter-label">Cohort</label>
+                    <select id="cohort_filter" class="form-control search-input">
+                        <option value="">All</option>
+                        @php
+                            $cohortNumbers = $trainees->map(function($t) {
+                                $slug = data_get($t, 'cohort.slug');
+                                if ($slug && preg_match('/\d+/', $slug, $matches)) {
+                                    return (int)$matches[0];
+                                }
+                                $num = data_get($t, 'cohort.number');
+                                if ($num !== null) {
+                                    return (int)$num;
+                                }
+                                $name = data_get($t, 'cohort.name');
+                                if ($name && preg_match('/\d+/', $name, $matches)) {
+                                    return (int)$matches[0];
+                                }
+                                return null;
+                            })->unique()->filter()->sort()->values();
+                        @endphp
+                        @foreach($cohortNumbers as $cohortNum)
+                            <option value="{{ $cohortNum }}">{{ $cohortNum }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 text-lg-end">
+                    <div id="page_info" class="text-muted small fw-semibold pb-2">
+                        Page 0 • 0 of 0
                     </div>
                 </div>
             </div>
@@ -367,6 +393,7 @@
             const status = document.getElementById('status_filter').value.toLowerCase();
             const academy = document.getElementById('academy_filter').value;
             const edu = document.getElementById('edu_back_filter').value;
+            const cohort = document.getElementById('cohort_filter').value;
 
             filteredData = allData.filter(function(t) {
                 const fullName = ((t.first_name || '') + ' ' + (t.last_name || '')).toLowerCase();
@@ -374,10 +401,26 @@
                 const tAcademy = (t.academy && t.academy.name) || '';
                 const tEdu = t.educational_background || '';
 
+                let tCohortNum = '';
+                if (t.cohort) {
+                    if (t.cohort.slug) {
+                        const match = t.cohort.slug.match(/\d+/);
+                        if (match) tCohortNum = match[0];
+                    }
+                    if (!tCohortNum && t.cohort.number != null) {
+                        tCohortNum = String(t.cohort.number);
+                    }
+                    if (!tCohortNum && t.cohort.name) {
+                        const match = t.cohort.name.match(/\d+/);
+                        if (match) tCohortNum = match[0];
+                    }
+                }
+
                 return fullName.indexOf(q) !== -1 &&
                        (!status || tStatus === status) &&
                        (!academy || tAcademy === academy) &&
-                       (!edu || tEdu === edu);
+                       (!edu || tEdu === edu) &&
+                       (!cohort || tCohortNum === cohort);
             });
 
             currentPage = 1;
@@ -424,9 +467,17 @@
 
                 let cohortName = '-';
                 if (t.cohort) {
-                    cohortName = t.cohort.slug || t.cohort.name || '-';
-                    if (cohortName.toLowerCase().startsWith('balqa-')) {
-                        cohortName = cohortName.replace(/balqa-\s*/i, 'cohort ');
+                    if (t.cohort.slug) {
+                        const match = t.cohort.slug.match(/\d+/);
+                        if (match) cohortName = match[0];
+                    }
+                    if (cohortName === '-' && t.cohort.number != null) {
+                        cohortName = String(t.cohort.number);
+                    }
+                    if (cohortName === '-' && t.cohort.name) {
+                        const match = t.cohort.name.match(/\d+/);
+                        if (match) cohortName = match[0];
+                        else cohortName = t.cohort.name;
                     }
                 }
                 const eduBack = (t.educational_background || 'N/A').toUpperCase();
@@ -450,7 +501,7 @@
             tbody.innerHTML = htmlBuffer;
 
             // Update Counter
-            document.getElementById('page_info').innerHTML = '<span class="text-dark">PAGE ' + currentPage + '</span> <span class="mx-2 text-muted">|</span> SHOWING ' + visibleData.length + ' OF ' + filteredData.length;
+            document.getElementById('page_info').innerHTML = 'Page ' + currentPage + ' <span class="mx-1 text-muted">•</span> ' + visibleData.length + ' of ' + filteredData.length;
 
             // Hide/Show lazy sentinel
             if (currentVisibleInPage >= fullPageData.length || fullPageData.length <= ROWS_BATCH) {
@@ -531,7 +582,7 @@
             const sentinelEl = document.getElementById('lazy-load-sentinel');
             if (sentinelEl) observer.observe(sentinelEl);
             
-            const filterIds = ['search_input', 'status_filter', 'academy_filter', 'edu_back_filter'];
+            const filterIds = ['search_input', 'status_filter', 'academy_filter', 'edu_back_filter', 'cohort_filter'];
             filterIds.forEach(function(id) {
                 const el = document.getElementById(id);
                 if (el) {

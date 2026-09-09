@@ -221,6 +221,7 @@ class DashboardController extends Controller
             'chartData',
             'overallEmploymentRate',
             'totalTrainees',
+            'totalEmployed',
             'totalAvailable',
             'companies',
             'employmentData',
